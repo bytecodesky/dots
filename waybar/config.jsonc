@@ -1,0 +1,61 @@
+{
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
+
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["battery", "network", "tray"],
+
+   "hyprland/workspaces": {
+            "format": "{icon}",
+            "format-icons": {
+                "active": " ",
+                "default": " ",
+                "empty": " "
+            },
+            "persistent-workspaces": {
+                "*": [ 1,2,3,4,5 ]
+            }
+        },
+
+  "clock": {
+    "format": "{:%A %B %d   |   %H:%M}",
+    "tooltip": false
+  },
+
+  "battery": {
+            "interval":30,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 20
+            },
+            "format": "{capacity}% {icon}",
+            "format-charging": "{capacity}% 󰂄",
+            "format-plugged": "{capacity}% 󰂄 ",
+            "format-alt": "{time} {icon}",
+            "format-icons": [
+                "󰁻",
+            "󰁼",
+            "󰁾",
+            "󰂀",
+            "󰂂",
+            "󰁹"
+            ],
+        },
+
+  "network": {
+            "format-wifi": " ",
+            "format-ethernet":" ",
+            "format-disconnected": " ",
+            "tooltip-format-disconnected": "Error",
+            "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+            "tooltip-format-ethernet": "{ifname} 🖧 "
+        },
+
+  "tray": {
+            "icon-size": 14,
+            "spacing": 10
+        },
+}
