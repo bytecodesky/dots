@@ -1,139 +1,98 @@
-@import url('../../.cache/wal/colors-waybar.css');
-
+/* Importar fuentes si las necesitas, aunque Waybar suele usar la del sistema */
 * {
-    font-size:15px;
-    font-family: "CodeNewRoman Nerd Font Propo";
+    border: none;
+    border-radius: 0;
+    font-family: "CodeNewRoman Nerd Font Propo", "JetBrainsMono Nerd Font", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
 }
-window#waybar{
-    all:unset;
+
+/* 1. La ventana principal es transparente */
+window#waybar {
+    background: transparent;
+    color: #cdd6f4;
 }
-.modules-left {
-    padding:7px;
-    margin:10 0 5 10;
-    border-radius:10px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
-}
+
+/* 2. El contenedor central es la "Píldora" */
 .modules-center {
-    padding:7px;
-    margin:10 0 5 0;
-    border-radius:10px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+    background-color: #1e1e2e; /* Fondo oscuro */
+    border: 1px solid #45475a;  /* Borde sutil */
+    border-radius: 20px;        /* Bordes muy redondos */
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
-.modules-right {
-    padding:7px;
-    margin: 10 10 5 0;
-    border-radius:10px;
-    background: alpha(@background,.6);
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
-}
-tooltip {
-    background:@background;
-    color: @color7;
-}
-#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
-    transition: all .3s ease;
-    color:@color9;
-}
-#custom-notification {
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
-}
-#clock{
-    padding: 0px 5px;
-    color:@color7;
-    transition: all .3s ease;
-}
-#custom-pacman{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
-}
-#workspaces {
-    padding: 0px 5px;
-}
-#workspaces button {
-    all:unset;
-    padding: 0px 5px;
-    color: alpha(@color9,.4);
-    transition: all .2s ease;
-}
-#workspaces button:hover {
-    color:rgba(0,0,0,0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
-}
-#workspaces button.active {
-    color: @color9;
-    border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
-}
-#workspaces button.empty {
-    color: rgba(0,0,0,0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
-}
-#workspaces button.empty:hover {
-    color: rgba(0,0,0,0);
-    border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
-}
-#workspaces button.empty.active {
-    color: @color9;
-    border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
-}
-#bluetooth{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
+/* --- ESTILOS DE LOS MÓDULOS --- */
 
+/* Separador visual entre módulos (opcional, simula la línea vertical) */
+#temperature, #network, #battery {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid #45475a; /* Línea separadora */
 }
-#network{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
+/* Quitamos el borde al último elemento (reloj) */
+#clock {
+    margin-right: 0;
+    border-right: none;
 }
-#battery{
-    padding: 0px 5px;
-    transition: all .3s ease;
-    color:@color7;
 
+/* COLORES ESPECÍFICOS (Iguales a Quickshell) */
 
+#temperature {
+    color: #fab387; /* Naranja pálido */
 }
+
+#temperature.critical {
+    color: #f38ba8; /* Rojo si está muy caliente */
+}
+
+#network {
+    color: #a6e3a1; /* Verde */
+}
+
+#network.disconnected {
+    color: #f38ba8;
+}
+
+#battery {
+    color: #f9e2af; /* Amarillo */
+}
+
 #battery.charging {
-    color: #26A65B;
+    color: #a6e3a1; /* Verde al cargar */
 }
 
 #battery.warning:not(.charging) {
-    color: #ffbe61;
+    color: #fab387;
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: #f38ba8; /* Color base: Rojo suave */
     animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
+    animation-duration: 0.8s; /* Un poco más suave */
     animation-iteration-count: infinite;
     animation-direction: alternate;
+    /* Eliminamos cualquier fondo aquí */
+    background: transparent; 
+}
+
+#clock {
+    color: #cdd6f4; /* Blanco azulado */
+    font-weight: bold;
+}
+
+/* Animación de parpadeo para batería crítica */
+@keyframes blink {
+    0% {
+        color: #f38ba8; /* Rojo */
+        text-shadow: 0 0 5px rgba(243, 139, 168, 0.5); /* Brillo suave opcional */
     }
-#tray{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-
-}
-#tray menu * {
-    padding: 0px 5px;
-    transition: all .3s ease; 
-}
-
-#tray menu separator {
-    padding: 0px 5px;
-    transition: all .3s ease; 
+    100% {
+        color: #cdd6f4; /* Blanco/Gris */
+        text-shadow: none;
+    }
 }

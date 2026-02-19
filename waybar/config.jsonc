@@ -1,61 +1,54 @@
 {
-  "layer": "top",
-  "position": "top",
-  "reload_style_on_change": true,
-
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["clock"],
-  "modules-right": ["battery", "network", "tray"],
-
-   "hyprland/workspaces": {
-            "format": "{icon}",
-            "format-icons": {
-                "active": " ",
-                "default": " ",
-                "empty": " "
-            },
-            "persistent-workspaces": {
-                "*": [ 1,2,3,4,5 ]
-            }
+    "layer": "top",
+    "position": "bottom",
+    "margin-bottom": 10,
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 44,
+    "modules-left": [],
+    "modules-center": [
+        "temperature",
+        "network",
+        "battery",
+        "clock"
+    ],
+    "modules-right": [],
+    "temperature": {
+        "thermal-zone": 0,
+        "format": " {temperatureC}°C",
+        "critical-threshold": 80,
+        "format-critical": " {temperatureC}°C",
+        "tooltip": false
+    },
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-ethernet": "  Conectado",
+        "format-disconnected": "󰤮  Sin Red",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "max-length": 25
+    },
+    "battery": {
+        "interval": 10,
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 20
         },
-
-  "clock": {
-    "format": "{:%A %B %d   |   %H:%M}",
-    "tooltip": false
-  },
-
-  "battery": {
-            "interval":30,
-            "states": {
-                "good": 95,
-                "warning": 30,
-                "critical": 20
-            },
-            "format": "{capacity}% {icon}",
-            "format-charging": "{capacity}% 󰂄",
-            "format-plugged": "{capacity}% 󰂄 ",
-            "format-alt": "{time} {icon}",
-            "format-icons": [
-                "󰁻",
-            "󰁼",
-            "󰁾",
-            "󰂀",
-            "󰂂",
-            "󰁹"
-            ],
-        },
-
-  "network": {
-            "format-wifi": " ",
-            "format-ethernet":" ",
-            "format-disconnected": " ",
-            "tooltip-format-disconnected": "Error",
-            "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-            "tooltip-format-ethernet": "{ifname} 🖧 "
-        },
-
-  "tray": {
-            "icon-size": 14,
-            "spacing": 10
-        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%Y-%m-%d}"
+    }
 }
