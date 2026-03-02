@@ -2,12 +2,16 @@
     "layer": "top",
     "position": "bottom",
     "margin-bottom": 10,
+    "margin-left": 10,
+    "margin-right": 10,
     "mod": "dock",
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
     "height": 44,
-    "modules-left": [],
+    "modules-left": [
+        "niri/workspaces"
+    ],
     "modules-center": [
         "temperature",
         "network",
@@ -15,6 +19,14 @@
         "clock"
     ],
     "modules-right": [],
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "active": ""
+        }
+    },
     "temperature": {
         "thermal-zone": 0,
         "format": " {temperatureC}°C",
@@ -24,8 +36,8 @@
     },
     "network": {
         "format-wifi": "  {essid}",
-        "format-ethernet": "  Conectado",
-        "format-disconnected": "󰤮  Sin Red",
+        "format-ethernet": "󱕆  Connected to vpn",
+        "format-disconnected": "󰤮  Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}",
         "max-length": 25
     },
@@ -39,13 +51,7 @@
         "format": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
+        "format-icons": ["", "", "", "", ""]
     },
     "clock": {
         "format": "{:%H:%M}",
